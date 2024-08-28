@@ -1,1 +1,322 @@
-hello world!
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background: linear-gradient(to right, #0a0a0a, #1e1e1e); /* Gradiente de fundo preto e cinza escuro */
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #ffffff; /* Cor do texto principal */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .navbar {
+            background-color: #000; /* Cor do fundo da navbar (preto) */
+            margin-bottom: 0; /* Remove o espaço abaixo da navbar */
+        }
+        .navbar-brand {
+            font-size: 2rem; /* Aumenta o tamanho da fonte da marca */
+            color: #d4af37; /* Cor do texto da navbar (dourado) */
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Sombra no texto */
+        }
+        .navbar-nav .nav-link {
+            color: #d4af37; /* Cor dos links da navbar (dourado) */
+        }
+        .navbar-nav .nav-link:hover {
+            color: #ffffff; /* Cor dos links ao passar o mouse (branco) */
+        }
+        .dropdown-menu {
+            background-color: #000; /* Cor do fundo do menu dropdown */
+        }
+        .dropdown-item {
+            color: #ffffff; /* Cor dos itens do menu dropdown */
+        }
+        .dropdown-item:hover {
+            background-color: #333333; /* Cor de fundo do item ao passar o mouse */
+            color: #d4af37; /* Cor do texto do item ao passar o mouse (dourado) */
+        }
+        .btn-login {
+            background-color: #d4af37; /* Cor do botão de login (dourado) */
+            color: #ffffff; /* Cor do texto do botão (branco) */
+            border: none;
+            border-radius: 25px; /* Bordas arredondadas do botão */
+            padding: 8px 20px; /* Ajustado o padding do botão */
+            font-size: 0.9rem; /* Ajustado o tamanho da fonte do botão */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Sombra no botão */
+            transition: background-color 0.3s, box-shadow 0.3s; /* Transição suave */
+        }
+        .btn-login:hover {
+            background-color: #bfa72d; /* Cor do botão ao passar o mouse (dourado mais escuro) */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6); /* Sombra mais forte ao passar o mouse */
+        }
+        .carousel {
+            width: 100%; /* Largura completa */
+            position: relative;
+            margin: 0; /* Remove o espaço antes e depois do carrossel */
+        }
+        .carousel-inner img {
+            width: 100%; /* Ajusta a largura da imagem para preencher o carrossel */
+            height: auto; /* Mantém a proporção da imagem */
+            border-radius: 8px; /* Adiciona bordas arredondadas */
+            animation: zoomIn 3s ease-in-out; /* Animação de zoom-in nas imagens do carrossel */
+        }
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+        }
+        .carousel-indicators li {
+            background-color: #d4af37;
+        }
+        .carousel-indicators .active {
+            background-color: #bfa72d;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px 20px;
+            background-color: #000; /* Cor do fundo do footer */
+            color: #d4af37; /* Cor do texto do footer (dourado) */
+            position: relative; /* Ajusta o rodapé para não ser fixo */
+            margin-top: auto; /* Garante que o rodapé vá para o fundo da página */
+        }
+        .section-title {
+            text-align: center;
+            color: #ffffff; /* Cor do texto do título */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Sombra no texto */
+            margin: 10px; /* Espaço acima e abaixo do título */
+            margin-top: 70px;
+        }
+        .card-img-top {
+            height: 300px; /* Aumenta a altura das imagens dos cartões */
+            object-fit: cover; /* Garante que a imagem cubra o contêiner mantendo a proporção */
+        }
+
+        /* Ajusta o tamanho dos cartões */
+        .card {
+            height: 500px; /* Aumenta a altura total dos cartões */
+            width: 250px;
+            display: flex;
+            flex-direction: column; /* Garante que o conteúdo do cartão fique empilhado verticalmente */
+            border: none; /* Remove a borda do cartão, se necessário */
+            border-radius: 10px; /* Adiciona bordas arredondadas aos cartões */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adiciona sombra ao cartão */
+            margin-bottom: 30px; /* Aumenta o espaço entre os cartões */
+        }
+
+        .card-body {
+            flex: 1; /* Faz com que o corpo do cartão ocupe o espaço restante */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Garante que o conteúdo seja distribuído verticalmente */
+        }
+
+        /* Ajusta o tamanho dos botões dentro dos cartões */
+        .btn-primary {
+            background-color: #d4af37; /* Cor de fundo dos botões */
+            border: none; /* Remove a borda do botão */
+            border-radius: 25px; /* Bordas arredondadas do botão */
+            padding: 10px 20px; /* Ajusta o padding do botão */
+            font-size: 0.9rem; /* Ajusta o tamanho da fonte do botão */
+            transition: background-color 0.3s; /* Transição suave ao passar o mouse */
+        }
+
+        .btn-primary:hover {
+            background-color: #bfa72d; /* Cor do botão ao passar o mouse */
+        }
+        /* Novo estilo para os títulos dos cartões */
+        .card-title {
+            color: #3b3b3b; /* Cor dourada para os títulos dos cartões */
+            font-weight: bold; /* Negrito para os títulos */
+        }
+
+        /* Novo estilo para as descrições dos cartões */
+        .card-text {
+            color: #696969; /* Cor clara para as descrições dos cartões */
+        }
+
+        #description {
+            color: white;
+            text-shadow: #000 2px 3px 2px;
+            font-size: 20px;
+        }
+        #dtitu {
+            color: white;
+            text-shadow: #000 2px 3px 2px;
+            font-size: 34px;
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho com Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Galáxia</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(atual)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Ajuda</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Loja
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Produtos</a>
+                        <a class="dropdown-item" href="#">Ofertas</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Meu Carrinho</a>
+                    </div>
+                </li>
+            </ul>
+            <a href="logon.html" class="btn btn-login">Entrar</a> <!-- Botão de login adicionado na navbar -->
+        </div>
+    </nav>
+
+    <!-- Carrossel -->
+    <div id="carouselExampleIndicators" class="carousel slide">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="img/astro1.png" class="d-block w-100" alt="Imagem 1">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3 id="dtitu">NASA's NEOWISE Infrared Heritage will live on</h3><br>
+                    <p id="description">After 14 successful years in space, increased solar activity is causing the NEOWISE mission to end on July 31. NEO Surveyor, NASA’s next-generation infrared space telescope dedicated to hunting hazardous near-Earth objects, is set for launch in late 2027. NEO Surveyor seeks the most difficult-to-find asteroids and comets that could damage Earth if we don’t find them first.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="img/astro2.png" class="d-block w-100" alt="Imagem 2">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3 id="dtitu">The Moon</h3><br>
+                    <p id="description">Earth's Moon is the brightest and largest object in our night sky. The Moon makes Earth a more livable planet by moderating our home planet's wobble on its axis, leading to a relatively stable climate. It also causes tides, creating a rhythm that has guided humans for thousands of years.
+
+                        The Moon was likely formed after a Mars-sized body collided with Earth several billion years ago.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="img/astro3.png" class="d-block w-100" alt="Imagem 3">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3 id="dtitu">Sounding Rocket Mission Will Trace Auroral Winds</h3><br>
+                    <p id="description">The beautiful lights are just the visible product of these collisions — the kinetic and thermal energy released, invisible to the naked eye, are no less important. Understanding the contribution that aurora make to the total amount of energy that enters and leaves Earth’s geospace system — referred to as auroral forcing — is one of the major goals of the NASA-funded Auroral Zone Upwelling Rocket Experiment, or AZURE. The more we learn about auroras, the more we understand about the fundamental processes that drive near-Earth space.</p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <!-- Título da Seção -->
+    <div class="container">
+        <h2 class="section-title">NASA IMAGES</h2>
+    </div>
+
+    <!-- Cards -->
+    <div class="container my-5">
+        <div class="row">
+            <!-- Card 1 -->
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card mb-4"> <!-- Adicione mb-4 aqui -->
+                    <img src="img/vialac.png" width="250px" height="350px" class="card-img-top" alt="Imagem do Cartão 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Milky Way</h5>
+                        <p class="card-text">Our home galaxy is called the Milky Way. It’s a spiral galaxy with a disk of stars spanning more than...</p>
+                        <a href="https://science.nasa.gov/universe/galaxies/" target="_blank" class="btn btn-primary">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card mb-4"> <!-- Adicione mb-4 aqui -->
+                    <img src="img/sol.png" width="250px" height="350px" class="card-img-top" alt="Imagem do Cartão 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Star</h5>
+                        <p class="card-text">At first, most of the protostar’s energy comes from heat released by its initial collapse...</p>
+                        <a href="https://science.nasa.gov/universe/stars/" target="_blank" class="btn btn-primary">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card mb-4"> <!-- Adicione mb-4 aqui -->
+                    <img src="img/exo.png" class="card-img-top" alt="Imagem do Cartão 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Exoplanets</h5>
+                        <p class="card-text">An exoplanet is any planet beyond our solar system. Most of them orbit other stars...</p>
+                        <a href="https://science.nasa.gov/exoplanets/" target="_blank" class="btn btn-primary">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card mb-4"> <!-- Adicione mb-4 aqui -->
+                    <img src="img/james.png" class="card-img-top" alt="Imagem do Cartão 4">
+                    <div class="card-body">
+                        <h5 class="card-title">James Webb</h5>
+                        <p class="card-text">Webb is the premier observatory of the next decade, serving thousands of astronomers worldwide...</p>
+                        <a href="https://science.nasa.gov/mission/webb/" target="_blank" class="btn btn-primary">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Rodapé -->
+    <footer class="footer">
+        <p>&copy; 2024 Galáxia. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Bootstrap JS e dependências (jQuery e Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
+
